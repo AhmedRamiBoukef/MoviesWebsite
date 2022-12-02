@@ -1,11 +1,11 @@
 import Head from "next/head";
 import { Header } from "../Components/Header";
 import { Nav } from "../Components/Nav";
+import { Pagination } from "../Components/Pagination";
 import { Results } from "../Components/Results";
 import requests from "../utils/requests";
 
-export default function Home({ results, genre }) {
-  console.log(genre);
+export default function Home({ results }) {
   return (
     <div>
       <Head>
@@ -18,39 +18,26 @@ export default function Home({ results, genre }) {
       <Header />
       <Nav />
       <Results results={results} />
+      <Pagination />
     </div>
   );
 }
 
 export async function getServerSideProps(context) {
   const genre = context.query.genre;
+  const index = context.query.index;
+  console.log(requests.fetchTrending.url);
 
-  const request4 = await fetch(
+  const request = await fetch(
     `https://api.themoviedb.org/3${
       requests[genre]?.url || requests.fetchTrending.url
-    }&page=1`
+    }&page=${index || 1}`
   ).then((res) => res.json());
-  const request1 = await fetch(
-    `https://api.themoviedb.org/3${
-      requests[genre]?.url || requests.fetchTrending.url
-    }&page=2`
-  ).then((res) => res.json());
-  const request2 = await fetch(
-    `https://api.themoviedb.org/3${
-      requests[genre]?.url || requests.fetchTrending.url
-    }&page=3`
-  ).then((res) => res.json());
-  const request3 = await fetch(
-    `https://api.themoviedb.org/3${
-      requests[genre]?.url || requests.fetchTrending.url
-    }&page=4`
-  ).then((res) => res.json());
-  let request = [...request1.results,...request2.results,...request3.results,...request4.results];
+  console.log(request);
 
   return {
     props: {
-      results: request,
-      genre: requests[genre]?.url,
+      results: request.results,
     },
   };
 }
