@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-[#06202A] text-gray-300;
+    }
+}
+
+.bgImage {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../Images/original.jpeg");
+    background-size: auto 100%;
+}
