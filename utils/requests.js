@@ -6,10 +6,12 @@ export default {
         title: "Trending Series",
         url: `/discover/tv?api_key=${API_KEY}&language=en-US&watch_region=FR&with_watch_providers=119&with_watch_monetization_types=flatrate&sort_by=popularity.desc`
     },
+    
     fetchRomComSeries: {
-        title: "Rom-Com Series",
-        url: `/discover/tv?api_key=${API_KEY}&language=en-US&watch_region=FR&with_watch_providers=119&with_watch_monetization_types=flatrate&with_genres=35,10749&sort_by=popularity.desc`
+        title: 'Rom-Com Series',
+        url: `/discover/tv?api_key=${API_KEY}&language=en-US&watch_region=FR&with_watch_providers=119&with_watch_monetization_types=flatrate&with_genres=35&sort_by=popularity.desc`
     },
+
     fetchTrending: {
         title: 'Trending',
         url: `/trending/all/week?api_key=${API_KEY}&language-en-US`
